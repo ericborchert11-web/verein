@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ehrenamtlich helfen · Leben Pflegen Reisen e.V.</title>
+<meta name="description" content="Werden Sie ehrenamtliche Reisebegleitung oder Sitzwache in Berlin. Mit steuerfreier Übungsleiterpauschale, Schulung und Versicherung.">
+<meta name="keywords" content="bezahltes Ehrenamt Berlin, Sitzwache werden, Reisebegleitung Ehrenamt, Übungsleiterpauschale, Aktivrente, Quereinstieg Pflege">
+<link rel="canonical" href="https://www.lebenpflegenreisen.de/ehrenamt.html">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.hero-ea {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-soft) 100%);
+  color: #fff; padding: 64px 0 48px;
+  position: relative; overflow: hidden;
+}
+.hero-ea::before {
+  content:''; position:absolute; right:-100px; top:-100px;
+  width:360px; height:360px; background:var(--lime); opacity:.12;
+  border-radius:50%; filter:blur(40px);
+}
+.hero-ea .wrap { position: relative; z-index: 1; }
+.hero-ea h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: var(--fs-h1);
+  line-height: 1.05; letter-spacing: -0.025em;
+  margin-bottom: 16px; max-width: 820px;
+}
+.hero-ea h1 em { font-style: normal; color: var(--lime); }
+.hero-ea p { max-width: 640px; font-size: calc(var(--fs-base) + 2px); opacity: .94; line-height: 1.55; margin-bottom: 26px; }
+
+.benefit-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.benefit {
+  background: #fff; border-radius: var(--radius);
+  padding: 26px 28px; box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.benefit .b-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--lime-soft); color: var(--green-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 14px;
+}
+.benefit h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700; font-size: 18px;
+  color: var(--green-deep); margin-bottom: 8px;
+}
+.benefit p { color: var(--muted); font-size: 14px; line-height: 1.55; }
+.benefit .highlight {
+  display: inline-block; background: var(--lime);
+  color: var(--green-deep); padding: 3px 10px;
+  border-radius: 12px; font-size: 12px; font-weight: 700;
+  margin-top: 8px;
+}
+
+.process-steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+.step {
+  position: relative; padding: 24px 26px 22px;
+  background: #fff; border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.step-num {
+  position: absolute; top: -16px; left: 26px;
+  background: var(--green); color: var(--lime);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 16px;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.step h4 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700; font-size: 18px;
+  color: var(--green-deep); margin: 6px 0 8px;
+}
+.step p { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+.faq { margin-top: 24px; }
+.faq-item {
+  background: #fff; border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 10px; overflow: hidden;
+}
+.faq-q {
+  padding: 16px 20px; cursor: pointer;
+  font-weight: 700; color: var(--green-deep);
+  display: flex; justify-content: space-between; align-items: center;
+  list-style: none;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: '+'; font-size: 22px; font-weight: 400; color: var(--green); }
+details[open] .faq-q::after { content: '−'; }
+.faq-a { padding: 0 20px 18px; color: var(--muted); line-height: 1.6; font-size: 14px; }
+</style>
+</head>
+<body>
+<a href="#main" class="sr-only">Zum Hauptinhalt</a>
+
+<section class="hero-ea">
+  <div class="wrap">
+    <h1 data-ls="Ehrenamtlich helfen. Mit kleiner Aufwands-Entschädigung.">Ehrenamt mit <em>Haltung</em> — und Aufwandsentschädigung.</h1>
+    <p data-ls="Sie entscheiden, wann und wie oft. Sie bekommen Schulung, Versicherung und bis zu 3.300 Euro pro Jahr.">
+      Bei uns begleiten Sie Menschen auf Reisen oder sitzen Schichten am Krankenbett. Sie bestimmen selbst, wann und wie oft. Steuerfrei bis 3.300 € pro Jahr, kostenlose Schulung mit Zertifikat, voller Versicherungsschutz.
+    </p>
+    <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+      <a href="login.html" class="btn btn-primary btn-xl">Konto erstellen →</a>
+      <a href="#faq" class="btn btn-ghost-light">Fragen &amp; Antworten</a>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+
+<section class="page">
+  <div class="wrap">
+    <div class="sec-eyebrow">Das bekommen Sie</div>
+    <h2 class="sec-title" data-ls="Das bekommen Sie bei uns">Fair bezahltes Ehrenamt. Echt.<span class="ls-tag">Einfache Sprache</span></h2>
+    <p class="sec-lead" data-ls="Sie kriegen: Geld, Versicherung, Schulung, und Sie entscheiden wann Sie arbeiten.">Engagement braucht mehr als gute Worte. Wir bieten Rahmen, Anerkennung und echte Flexibilität.</p>
+
+    <div class="benefit-grid">
+      <div class="benefit">
+        <div class="b-icon">💰</div>
+        <h3>Übungsleiterpauschale</h3>
+        <p>Steuerfreie Aufwandsentschädigung nach § 3 Nr. 26 EStG. 150 €/Reisetag oder 200 €/Sitzwachen-Schicht.</p>
+        <span class="highlight">bis 3.300 €/Jahr</span>
+      </div>
+      <div class="benefit">
+        <div class="b-icon">🎓</div>
+        <h3>Kostenlose Schulung</h3>
+        <p>Unsere 8-stündige Online-Schulung macht Sie fit für Sitzwachen und Begleitung. Mit Zertifikat zum Ausdrucken.</p>
+        <span class="highlight">inkl. Zertifikat</span>
+      </div>
+      <div class="benefit">
+        <div class="b-icon">🛡️</div>
+        <h3>Voller Versicherungsschutz</h3>
+        <p>Haftpflicht- und Unfallversicherung über den Verein — für alle Reisen und Sitzwachen-Einsätze.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-icon">🗓️</div>
+        <h3>Volle Flexibilität</h3>
+        <p>Sie entscheiden selbst, wann und wie oft. Keine Mindestbindung, keine Schichtpflicht. Alles per App.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-icon">❤️</div>
+        <h3>Sinnstiftende Tätigkeit</h3>
+        <p>Sie machen einen echten Unterschied. Für Menschen, die ohne Sie nicht reisen könnten. Für Familien, die Entlastung brauchen.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-icon">🤝</div>
+        <h3>Team &amp; Supervision</h3>
+        <p>Regelmäßige Austauschrunden, Supervision bei schwierigen Fällen, erfahrene Pflegefachkraft als Ansprechpartnerin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" style="background: var(--white);">
+  <div class="wrap">
+    <div class="sec-eyebrow">So läuft's ab</div>
+    <h2 class="sec-title">In vier Schritten zum ersten Einsatz</h2>
+    <div class="process-steps" style="margin-top: 32px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Registrieren</h4>
+        <p>Konto erstellen und kurz etwas über sich erzählen. Dauert drei Minuten.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Schulung machen</h4>
+        <p>Die 8-stündige Online-Schulung. Im eigenen Tempo, mit Zertifikat am Ende.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Verfügbarkeit eintragen</h4>
+        <p>Im Kalender markieren, wann Sie können. Schichten und Reisen aussuchen, die passen.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Einsatz &amp; Abrechnung</h4>
+        <p>Nach dem Einsatz online abrechnen. Überweisung auf Ihr Konto innerhalb einer Woche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="wrap" style="max-width: 820px;">
+    <div class="sec-eyebrow">Wer kann mitmachen?</div>
+    <h2 class="sec-title" data-ls="Wer kann mitmachen?">Fast jede:r — Sie auch.<span class="ls-tag">Einfache Sprache</span></h2>
+    <p class="sec-lead" style="max-width: 740px;">Sie brauchen keine pflegerische Ausbildung. Sie brauchen Empathie, Zuverlässigkeit und ein bisschen Zeit.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+      <div class="benefit">
+        <div class="b-icon" style="background: #E6E6E0;">👵</div>
+        <h3>Rentner:innen &amp; Aktivrentner</h3>
+        <p>Besonders willkommen: Menschen in der Rente oder Aktivrente. Sinnvoll bleiben, etwas dazuverdienen — und das alles steuerfrei.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-icon" style="background: #E6E6E0;">📚</div>
+        <h3>Studierende</h3>
+        <p>Pflegenahe Erfahrung sammeln, dazulernen, dazuverdienen. Perfekt für soziale Studiengänge, Medizin, Psychologie.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-icon" style="background: #E6E6E0;">💼</div>
+        <h3>Berufstätige mit Herz</h3>
+        <p>Ob Wochenend-Schichten oder gelegentliche Reisen: flexibel genug für einen Vollzeit-Job neben dem Engagement.</p>
+      </div>
+      <div class="benefit">
+        <div class="b-icon" style="background: #E6E6E0;">🔄</div>
+        <h3>Pflege-Quereinsteiger</h3>
+        <p>Sie überlegen, in die Pflege zu wechseln? Perfekter Einstieg, um das Feld kennenzulernen — ohne Risiko.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" style="background: var(--white);" id="faq">
+  <div class="wrap" style="max-width: 820px;">
+    <div class="sec-eyebrow">Fragen &amp; Antworten</div>
+    <h2 class="sec-title">Häufige Fragen</h2>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary class="faq-q">Muss ich pflegerisch ausgebildet sein?</summary>
+        <div class="faq-a">Nein. Unsere Schulung (8 Stunden online) vermittelt alles, was Sie für Sitzwachen und Reisebegleitung brauchen. Sie machen keine pflegerischen Tätigkeiten, sondern bleiben präsent und helfen im Alltag.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Wie viel Zeit muss ich investieren?</summary>
+        <div class="faq-a">Sie entscheiden selbst. Es gibt keine Mindeststundenzahl. Manche machen eine Sitzwache im Monat, andere zwei Reisen pro Jahr. Alles ist möglich.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Wie wird die Aufwandsentschädigung gezahlt?</summary>
+        <div class="faq-a">Nach jedem Einsatz reichen Sie online eine Abrechnung ein. Die Auszahlung erfolgt per Überweisung innerhalb einer Woche. Bis 3.300 €/Jahr ist die Zahlung steuerfrei nach § 3 Nr. 26 EStG (Übungsleiterpauschale).</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Was passiert bei einem Unfall?</summary>
+        <div class="faq-a">Sie sind über den Verein haftpflicht- und unfallversichert — für alle Reisen und Sitzwachen-Einsätze. Die Versicherung gilt auf Hin- und Rückweg sowie während des Einsatzes.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Kann ich das neben der Rente machen?</summary>
+        <div class="faq-a">Ja. Die Übungsleiterpauschale ist mit der Rente voll kombinierbar. Seit 2026 gibt es zusätzlich die Aktivrente (2.000 €/Monat steuerfrei für arbeitende Rentner). Ein zusätzlicher Verdienst ist also möglich.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Wo finden Sitzwachen statt?</summary>
+        <div class="faq-a">Aktuell in Berliner Kliniken, u.a. Charité Campus Mitte und St. Hedwig-Krankenhaus. Wir erweitern laufend unser Netzwerk. Sie können wählen, in welchen Häusern Sie eingesetzt werden möchten.</div>
+      </details>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="login.html" class="btn btn-primary btn-xl">Jetzt Konto erstellen →</a>
+      <p style="margin-top: 14px; font-size: 13px; color: var(--muted);">
+        Noch Fragen? <a href="mailto:info@lebenpflegenreisen.de" style="color: var(--green); font-weight: 700;">info@lebenpflegenreisen.de</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="app.js"></script>
+<script src="layout.js"></script>
+<script>LPR_Layout.init({ page: 'ehrenamt' });</script>
+</body>
+</html>

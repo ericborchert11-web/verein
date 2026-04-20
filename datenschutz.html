@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutz · Leben Pflegen Reisen e.V.</title>
+<meta name="description" content="Datenschutzerklärung nach DSGVO für den gemeinnützigen Verein Leben Pflegen Reisen e.V. Berlin.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lebenpflegenreisen.de/datenschutz.html">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #2D4A3A; --green-deep: #1E3127; --lime: #C8F135;
+  --sand: #E8E4DC; --white: #F5F5F0;
+  --text: #1A241E; --muted: #6B7771; --border: #D8D4CC;
+  --fs-base: 17px;
+}
+body.text-l  { --fs-base: 19px; }
+body.text-xl { --fs-base: 22px; }
+body.contrast { --green: #000; --green-deep: #000; --lime: #FFD900; --sand: #FFF; --white: #FFF; --text: #000; --muted: #333; --border: #000; }
+
+body {
+  background: var(--sand); font-family: 'Instrument Sans', sans-serif;
+  font-size: var(--fs-base); color: var(--text); line-height: 1.7;
+}
+.a11y-bar { background: var(--green-deep); color: #fff; padding: 10px 24px; display: flex; justify-content: flex-end; gap: 14px; flex-wrap: wrap; font-size: 14px; }
+.a11y-group { display: flex; align-items: center; gap: 8px; }
+.a11y-label { opacity: .75; font-weight: 500; font-size: 13px; }
+.a11y-btn { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.35); border-radius: 20px; padding: 4px 12px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 32px; }
+.a11y-btn[aria-pressed="true"] { background: var(--lime); color: var(--green-deep); border-color: var(--lime); }
+
+header { background: var(--green); color: #fff; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+.brand-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; }
+.brand-name em { font-style: normal; color: var(--lime); }
+.brand-sub { font-size: 11px; opacity: .65; letter-spacing: .12em; text-transform: uppercase; margin-top: 2px; }
+.nav-link { color: #fff; text-decoration: none; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 14px; }
+.nav-link:hover { background: rgba(255,255,255,.1); }
+
+main { max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
+
+.doc-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 38px;
+  color: var(--green-deep); margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.doc-sub { color: var(--muted); font-size: 15px; margin-bottom: 36px; }
+
+.toc {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px 24px;
+  margin-bottom: 32px; font-size: 14px;
+}
+.toc h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; margin-bottom: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--green); }
+.toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 4px; }
+.toc a { color: var(--text); text-decoration: none; }
+.toc a:hover { color: var(--green); text-decoration: underline; }
+
+h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700; font-size: 22px;
+  color: var(--green-deep); margin: 36px 0 12px;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 20px;
+}
+h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700; font-size: 17px;
+  color: var(--green); margin: 24px 0 10px;
+}
+p, ul, ol, dl { margin-bottom: 14px; }
+ul, ol { padding-left: 24px; }
+li { margin-bottom: 4px; }
+strong { color: var(--green-deep); }
+
+.legal-basis {
+  background: var(--white); border-left: 3px solid var(--lime);
+  padding: 10px 16px; margin: 12px 0;
+  font-size: 14px; color: var(--muted);
+}
+.legal-basis strong { color: var(--green); }
+
+.notice {
+  background: #FFF9EC; border: 1px solid #E8C968;
+  border-radius: 8px; padding: 16px 20px;
+  margin: 20px 0; font-size: 14px; line-height: 1.65;
+}
+.notice.alert {
+  background: #FCEDE5; border-color: #D4932D;
+}
+.notice strong { color: var(--green-deep); }
+
+.placeholder {
+  background: #FFF4E5; border: 1.5px dashed #D4932D;
+  padding: 2px 8px; border-radius: 5px;
+  font-family: monospace; font-size: 14px;
+  color: #805A1A; font-weight: 600; display: inline-block;
+}
+
+footer { background: var(--green-deep); color: rgba(255,255,255,.7); padding: 32px 24px; text-align: center; font-size: 13px; margin-top: 40px; }
+footer a { color: var(--lime); text-decoration: none; }
+a { color: var(--green); }
+</style>
+</head>
+<body>
+
+<div class="a11y-bar">
+  <div class="a11y-group"><span class="a11y-label">Schrift:</span>
+    <button class="a11y-btn" data-size="" aria-pressed="true" onclick="setTextSize('')">A</button>
+    <button class="a11y-btn" data-size="l" aria-pressed="false" onclick="setTextSize('l')">A+</button>
+    <button class="a11y-btn" data-size="xl" aria-pressed="false" onclick="setTextSize('xl')">A++</button>
+  </div>
+  <div class="a11y-group">
+    <button class="a11y-btn" id="btn-contrast" aria-pressed="false" onclick="toggleContrast()">◐ Kontrast</button>
+  </div>
+</div>
+
+<header>
+  <a href="index.html" class="brand">
+    <svg viewBox="0 0 48 48" width="34" height="34" aria-hidden="true">
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="10,10 24,24 10,38" stroke="#C8F135" stroke-width="4.5"/>
+        <polyline points="22,10 36,24 22,38" stroke="#C8F135" stroke-width="4.5" opacity="0.42"/>
+      </g>
+    </svg>
+    <div>
+      <div class="brand-name">Leben <em>Pflegen</em> Reisen</div>
+      <div class="brand-sub">e.V. · Berlin</div>
+    </div>
+  </a>
+  <a href="index.html" class="nav-link">← Zur Startseite</a>
+</header>
+
+<main>
+
+<h1 class="doc-title">Datenschutzerklärung</h1>
+<div class="doc-sub">Information nach Art. 13, 14 DSGVO · Stand: <span class="placeholder">Veröffentlichungsdatum</span></div>
+
+<div class="notice alert">
+  <strong>Hinweis zum Prototyp-Status:</strong> Diese Website läuft aktuell als clientseitiger Prototyp. Eingegebene Formulardaten (Verfügbarkeiten, Anmeldungen, Klinik-Buchungen, Abrechnungen) werden <em>ausschließlich im Browser-Speicher (localStorage) Ihres eigenen Geräts</em> abgelegt und <strong>nicht an einen Server übertragen</strong>. Beim Löschen des Browsers/Cache oder Wechsel des Geräts sind die Daten weg. Sobald die Produktivversion auf WordPress/Ionos läuft, werden Daten dann serverseitig gespeichert — mit entsprechender Auftragsverarbeitung, die hier dokumentiert wird. Der Vorstand aktualisiert diese Erklärung spätestens zum Produktivgang.
+</div>
+
+<div class="toc">
+  <h3>Inhalt</h3>
+  <ol>
+    <li><a href="#verantwortlicher">Verantwortlicher</a></li>
+    <li><a href="#betroffenenrechte">Ihre Rechte</a></li>
+    <li><a href="#aufruf">Beim Aufruf der Website</a></li>
+    <li><a href="#lokal">Lokal gespeicherte Daten (localStorage)</a></li>
+    <li><a href="#kontakt">Kontaktaufnahme per E-Mail oder Formular</a></li>
+    <li><a href="#mitglieder">Mitglieder- und Ehrenamtsverwaltung</a></li>
+    <li><a href="#klinik">Klinik-Buchungen</a></li>
+    <li><a href="#abrechnung">Abrechnungen &amp; Aufbewahrung</a></li>
+    <li><a href="#aufbewahrung">Löschung und Aufbewahrungsfristen</a></li>
+    <li><a href="#dritte">Empfänger / Auftragsverarbeiter</a></li>
+    <li><a href="#cookies">Cookies &amp; Tracking</a></li>
+    <li><a href="#beschwerde">Beschwerderecht bei der Aufsichtsbehörde</a></li>
+  </ol>
+</div>
+
+<h2 id="verantwortlicher">1. Verantwortlicher</h2>
+<p>
+  Verantwortlicher im Sinne der DSGVO ist:<br>
+  <strong>Leben Pflegen Reisen e.V.</strong><br>
+  <span class="placeholder">Vereinsanschrift</span><br>
+  E-Mail: <a href="mailto:datenschutz@lebenpflegenreisen.de">datenschutz@lebenpflegenreisen.de</a>
+</p>
+<p>Ein Datenschutzbeauftragter ist aufgrund der geringen Mitarbeiterzahl (&lt;20) nicht bestellungspflichtig.</p>
+
+<h2 id="betroffenenrechte">2. Ihre Rechte</h2>
+<p>Als betroffene Person haben Sie folgende Rechte:</p>
+<ul>
+  <li><strong>Auskunft</strong> über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
+  <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)</li>
+  <li><strong>Löschung</strong> („Recht auf Vergessenwerden", Art. 17 DSGVO)</li>
+  <li><strong>Einschränkung</strong> der Verarbeitung (Art. 18 DSGVO)</li>
+  <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+  <li><strong>Widerspruch</strong> gegen Verarbeitungen, die auf Art. 6 Abs. 1 lit. f beruhen (Art. 21 DSGVO)</li>
+  <li><strong>Widerruf erteilter Einwilligungen</strong> mit Wirkung für die Zukunft</li>
+</ul>
+<p>Zur Ausübung senden Sie eine formlose Nachricht an die oben genannte E-Mail.</p>
+
+<h2 id="aufruf">3. Beim Aufruf der Website</h2>
+<p>Beim Besuch dieser Website werden durch den Hosting-Anbieter <strong>Ionos SE</strong> (Elgendorfer Str. 57, 56410 Montabaur) in Server-Logfiles automatisch folgende Daten technisch bedingt erfasst:</p>
+<ul>
+  <li>Anonymisierte IP-Adresse</li>
+  <li>Datum und Uhrzeit des Zugriffs</li>
+  <li>Aufgerufene URL, Browser-Typ, Betriebssystem</li>
+  <li>Referrer-URL</li>
+</ul>
+<div class="legal-basis">
+  <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an sicherer, stabiler Bereitstellung).<br>
+  <strong>Speicherdauer:</strong> Standardmäßig 7 Tage in rotierenden Logs bei Ionos, sofern kein konkreter Sicherheitsvorfall eine längere Aufbewahrung erforderlich macht.
+</div>
+
+<h2 id="lokal">4. Lokal gespeicherte Daten (localStorage)</h2>
+<p>Die Prototyp-Version dieser Website speichert funktionale Daten <strong>ausschließlich im Speicher Ihres Browsers (Web-Storage / localStorage)</strong>. Diese Daten verlassen Ihr Gerät nicht und werden nicht an einen Server übertragen.</p>
+
+<p>Konkret werden folgende Schlüssel angelegt:</p>
+<ul>
+  <li><code>lpr-session-v2</code> — Ihre aktuelle Anmelde-Session (E-Mail, Name, Rolle)</li>
+  <li><code>lpr-users-v2</code> — registrierte Nutzer:innen (Name, E-Mail)</li>
+  <li><code>lpr-schichtplan-v1</code> — Eintragungen in Reisen</li>
+  <li><code>lpr-sitzwachen-avail-v1</code> — Ihre Verfügbarkeiten für Sitzwachen</li>
+  <li><code>lpr-sitzwachen-book-v1</code> — Buchungen durch Kliniken</li>
+  <li><code>lpr-sitzwachen-clinics-v1</code> — Klinik-Accounts</li>
+  <li><code>lpr-claims-v1</code> — Abrechnungsdaten</li>
+  <li><code>lpr-text-size</code>, <code>lpr-contrast</code>, <code>lpr-ls</code> — Barrierefreiheits-Einstellungen</li>
+</ul>
+
+<p>Sie können diese Daten jederzeit eigenständig löschen: über den „Zurücksetzen"-Button in der Demo-Leiste oder über Ihre Browser-Einstellungen (Cache/Website-Daten löschen).</p>
+
+<div class="legal-basis">
+  <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch aktive Nutzung des Prototyps) sowie § 25 Abs. 2 Nr. 2 TDDDG (technisch notwendige Speicherung für den vom Nutzer ausdrücklich gewünschten Telemediendienst).
+</div>
+
+<h2 id="kontakt">5. Kontaktaufnahme per E-Mail oder Formular</h2>
+<p>Wenn Sie uns per E-Mail oder über ein Kontaktformular eine Nachricht senden, verarbeiten wir die übermittelten Daten (Name, E-Mail-Adresse, Inhalt der Nachricht) ausschließlich zur Bearbeitung Ihres Anliegens.</p>
+<div class="legal-basis">
+  <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahme) bzw. lit. f (berechtigtes Interesse an effizienter Kommunikation).<br>
+  <strong>Speicherdauer:</strong> Bis zum Abschluss der Anfrage, längstens 3 Jahre (Verjährungsfrist).
+</div>
+
+<h2 id="mitglieder">6. Mitglieder- und Ehrenamtsverwaltung</h2>
+<p>Für die Ausübung der Vereinstätigkeit verarbeiten wir von ehrenamtlich Tätigen:</p>
+<ul>
+  <li>Name, Anschrift, Geburtsdatum, Kontaktdaten</li>
+  <li>Qualifikationen (z.B. Absolvieren der Einführungsschulung)</li>
+  <li>Bankdaten zur Auszahlung von Aufwandsentschädigungen</li>
+  <li>Einsatzhistorie (geleistete Dienste, Reisen, Abrechnungen)</li>
+</ul>
+<div class="legal-basis">
+  <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertrag über ehrenamtliche Tätigkeit), Art. 6 Abs. 1 lit. c DSGVO (rechtliche Verpflichtung aus § 3 Nr. 26 EStG &amp; § 14 BGB zur korrekten Auszahlung steuerfreier Aufwandsentschädigungen).<br>
+  <strong>Speicherdauer:</strong> 10 Jahre nach Beendigung der Tätigkeit gemäß § 147 AO (Aufbewahrungspflicht für Buchungsbelege).
+</div>
+
+<h2 id="klinik">7. Klinik-Buchungen</h2>
+<p>Bei Buchung einer Sitzwache durch eine Klinik verarbeiten wir:</p>
+<ul>
+  <li>Klinikdaten (Einrichtungsname, Station, Ansprechperson, Kontakt)</li>
+  <li>Datum, Schicht, ggf. anonymisierte Patienten-Kennung (z.B. Zimmernummer — <strong>kein Klarname</strong>)</li>
+  <li>Besonderheiten des Auftrags (erfolgt ohne Gesundheitsdaten der Patient:innen)</li>
+</ul>
+
+<div class="notice">
+  <strong>Wichtig:</strong> Wir fragen <strong>keine Gesundheitsdaten</strong> der Patient:innen ab (Art. 9 DSGVO). Die Zuordnung zwischen Buchung und Patient:in erfolgt über die Klinik — dies liegt in deren Verantwortungsbereich (§ 22 BlnKHG, Patientendatenschutz). Die Klinik bestätigt mit der Buchung, dass sie intern die Zweckbindung und Rechtmäßigkeit sichergestellt hat.
+</div>
+
+<div class="legal-basis">
+  <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung).<br>
+  <strong>Speicherdauer:</strong> 10 Jahre (§ 147 AO).
+</div>
+
+<h2 id="abrechnung">8. Abrechnungen &amp; Aufbewahrung</h2>
+<p>Abrechnungen der Aufwandsentschädigung nach § 3 Nr. 26 EStG enthalten personenbezogene Daten (Name, IBAN, Einsätze, Beträge). Diese unterliegen der steuerlichen Aufbewahrungspflicht nach § 147 AO.</p>
+<div class="legal-basis">
+  <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. c DSGVO i.V.m. § 147 AO.<br>
+  <strong>Speicherdauer:</strong> 10 Jahre nach Ende des Kalenderjahres, in dem die Abrechnung erstellt wurde.
+</div>
+
+<h2 id="aufbewahrung">9. Löschung und Aufbewahrungsfristen</h2>
+<p>Wir löschen personenbezogene Daten, sobald der Zweck der Verarbeitung entfällt und keine gesetzlichen Aufbewahrungsfristen mehr entgegenstehen. Typische Fristen:</p>
+<ul>
+  <li>Kontakt-Anfragen ohne Vertragsabschluss: <strong>3 Jahre</strong></li>
+  <li>Mitgliederdaten nach Austritt: <strong>3 Jahre</strong>, soweit nicht steuerlich relevant</li>
+  <li>Buchungs- und Abrechnungsbelege: <strong>10 Jahre</strong> (§ 147 AO)</li>
+  <li>Bewerbungsunterlagen (nicht berücksichtigt): <strong>6 Monate</strong></li>
+  <li>Server-Logs (Ionos): <strong>7 Tage</strong></li>
+</ul>
+
+<h2 id="dritte">10. Empfänger / Auftragsverarbeiter</h2>
+<p>Wir geben personenbezogene Daten nur an folgende Empfänger weiter:</p>
+<ul>
+  <li><strong>Hosting-Provider Ionos SE</strong> (Montabaur, Deutschland) — Auftragsverarbeitung nach Art. 28 DSGVO, Serverstandort Deutschland</li>
+  <li><strong>Banken</strong> (Volksbank o.ä.) — Zahlungsabwicklung der Aufwandsentschädigungen</li>
+  <li><strong>Finanzamt</strong> — bei steuerlichen Nachweispflichten</li>
+  <li><strong>Versicherung des Vereins</strong> (Haftpflicht, Unfall) — bei Schadensfällen</li>
+</ul>
+<p>Eine Übermittlung in Drittländer außerhalb der EU findet nicht statt.</p>
+
+<div class="notice">
+  <strong>Hinweis zu WhatsApp:</strong> Der Verein plant <strong>keinen Einsatz der WhatsApp Business App</strong> für Koordination, da diese datenschutzrechtlich problematisch ist (Adressbuch-Synchronisation mit Meta/USA). Die Kommunikation erfolgt per E-Mail und Telefon. Sollte künftig ein DSGVO-konformer Messenger-Kanal eingeführt werden, wird diese Erklärung vorab ergänzt und Einwilligungen eingeholt.
+</div>
+
+<h2 id="cookies">11. Cookies &amp; Tracking</h2>
+<p>Diese Website verwendet <strong>keine Tracking-Cookies, keine Analytics (z.B. Google Analytics) und kein Marketing-Tracking</strong>.</p>
+<p>Technisch notwendig sind lediglich:</p>
+<ul>
+  <li>localStorage-Einträge (siehe Abschnitt 4)</li>
+  <li>Session-Cookies nach dem WordPress-Umzug zur Anmeldung im Mitgliederbereich</li>
+</ul>
+<p>Diese sind nach § 25 Abs. 2 TDDDG einwilligungsfrei zulässig, da sie für den vom Nutzer angeforderten Dienst unbedingt erforderlich sind.</p>
+
+<h2 id="beschwerde">12. Beschwerderecht bei der Aufsichtsbehörde</h2>
+<p>Sie haben jederzeit das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Für uns zuständig ist:</p>
+<p>
+  <strong>Berliner Beauftragte für Datenschutz und Informationsfreiheit</strong><br>
+  Alt-Moabit 59–61, 10555 Berlin<br>
+  Telefon: 030 13889-0<br>
+  Web: <a href="https://www.datenschutz-berlin.de" rel="noopener">www.datenschutz-berlin.de</a>
+</p>
+
+<p style="color: var(--muted); font-size: 13px; margin-top: 40px;">
+  Diese Datenschutzerklärung wird regelmäßig überprüft. Stand: <span class="placeholder">Datum</span>.
+</p>
+
+</main>
+
+<footer>
+  <div style="margin-bottom: 8px;">© 2026 Leben Pflegen Reisen e.V. · Berlin</div>
+  <div>
+    <a href="index.html">Startseite</a> ·
+    <a href="impressum.html">Impressum</a> ·
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

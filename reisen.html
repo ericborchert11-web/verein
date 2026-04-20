@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Begleitete Reisen in Deutschland · Leben Pflegen Reisen e.V.</title>
+<meta name="description" content="Barrierefreie Gruppenreisen mit ehrenamtlicher Begleitung. Für Menschen mit Pflege- oder Mobilitätsbedarf. Oberhof, Ostsee, Bayerischer Wald, Dresden.">
+<meta name="keywords" content="Reise mit Pflegebedarf, barrierefreie Gruppenreise, Senioren Reise Deutschland, Demenz Reise, Reisebegleitung Berlin">
+<link rel="canonical" href="https://www.lebenpflegenreisen.de/reisen.html">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.hero-reisen {
+  background: linear-gradient(135deg, #B85A6B 0%, var(--family) 100%);
+  color: #fff; padding: 56px 0 44px;
+  position: relative; overflow: hidden;
+}
+.hero-reisen h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: var(--fs-h1);
+  line-height: 1.05; letter-spacing: -0.025em;
+  margin-bottom: 16px; max-width: 820px;
+}
+.hero-reisen h1 em { font-style: normal; color: #FFE4CB; }
+.hero-reisen p { max-width: 640px; font-size: calc(var(--fs-base) + 2px); opacity: .94; line-height: 1.55; }
+.pain-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px; margin-top: 24px;
+}
+.pain-card {
+  background: #fff; border-radius: var(--radius);
+  padding: 24px 26px; box-shadow: var(--shadow);
+  border: 1px solid var(--border); border-left: 4px solid var(--family);
+}
+.pain-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700; font-size: 17px;
+  color: var(--green-deep); margin-bottom: 8px;
+}
+.pain-card p { color: var(--muted); font-size: 14px; line-height: 1.55; }
+.trip-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+}
+.trip-card {
+  background: #fff; border-radius: var(--radius);
+  padding: 26px 28px; box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.trip-badge {
+  position: absolute; top: 16px; right: 16px;
+  background: var(--lime); color: var(--green-deep);
+  padding: 4px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: .06em;
+}
+.trip-badge.full { background: #E6E6E0; color: var(--muted); }
+.trip-meta {
+  font-size: 12px; font-weight: 700;
+  color: var(--family); letter-spacing: .12em;
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.trip-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 22px;
+  color: var(--green-deep); margin-bottom: 8px;
+  letter-spacing: -0.015em; line-height: 1.15;
+}
+.trip-card p { color: var(--muted); font-size: 14px; line-height: 1.55; margin-bottom: 14px; flex-grow: 1; }
+.trip-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.trip-fact {
+  font-size: 12px; padding: 4px 10px;
+  background: var(--lime-soft); color: var(--green-deep);
+  border-radius: 12px; font-weight: 600;
+}
+.process-steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+.step {
+  position: relative; padding: 22px 24px;
+  background: #fff; border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.step-num {
+  position: absolute; top: -14px; left: 24px;
+  background: var(--green); color: var(--lime);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 16px;
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.step h4 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700; font-size: 17px;
+  color: var(--green-deep); margin: 6px 0 6px;
+}
+.step p { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.request-form {
+  background: #fff; border-radius: var(--radius);
+  padding: 32px 34px; box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  max-width: 720px; margin: 0 auto;
+}
+.request-form h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 26px;
+  color: var(--green-deep); margin-bottom: 8px;
+}
+.request-form .intro { color: var(--muted); margin-bottom: 22px; font-size: 15px; }
+</style>
+</head>
+<body>
+<a href="#main" class="sr-only">Zum Hauptinhalt</a>
+
+<section class="hero-reisen">
+  <div class="wrap">
+    <h1 data-ls="Urlaub mit Hilfe. Für Menschen, die Pflege brauchen.">Noch einmal ans Meer. <em>Nicht allein.</em></h1>
+    <p data-ls="Ihr Vater oder Ihre Mutter will in den Urlaub. Aber alleine geht es nicht mehr. Wir fahren mit.">
+      Wir organisieren <strong>barrierefreie Gruppenreisen innerhalb Deutschlands</strong> für Menschen mit Pflege- oder Mobilitätsbedarf. Vier Gäste, vier ehrenamtliche Begleitungen, ein würdevoller Urlaub.
+    </p>
+  </div>
+</section>
+
+<main id="main">
+
+<!-- Pain Points -->
+<section class="page" style="padding-top: 48px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">Kennen Sie das?</div>
+    <h2 class="sec-title" data-ls="Kommt Ihnen das bekannt vor?">Wenn Reisen plötzlich schwer wird<span class="ls-tag">Einfache Sprache</span></h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <h3 data-ls="Pflege-Bedarf">„Er kann nicht mehr allein verreisen."</h3>
+        <p data-ls="Ihr Vater braucht Hilfe beim Anziehen, Duschen und bei den Medikamenten.">Pflegebedürftige Angehörige brauchen bei kleinen Dingen Unterstützung — beim Anziehen, bei Medikamenten, beim Orientieren in fremder Umgebung.</p>
+      </div>
+      <div class="pain-card">
+        <h3 data-ls="Familie hat keine Zeit">„Wir können nicht mit — Beruf, Kinder…"</h3>
+        <p data-ls="Sie haben selbst zu viel zu tun.">Sie würden gern mitfahren, aber Job, eigene Familie und Alltag machen das unmöglich. Und hauptberufliche Reisebegleitung ist sehr teuer.</p>
+      </div>
+      <div class="pain-card">
+        <h3 data-ls="Mit Demenz verreisen">„Bei seiner Demenz… ist das überhaupt möglich?"</h3>
+        <p data-ls="Auch mit Demenz können Sie verreisen. Wir kennen uns aus.">Demenziell veränderte Menschen brauchen klare Strukturen und ruhige Begleitung. Unsere Ehrenamtlichen sind dafür geschult und arbeiten zu zweit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Kommende Reisen -->
+<section class="page" style="background: var(--white); padding-top: 56px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">Kommende Reisen 2026</div>
+    <h2 class="sec-title" data-ls="Das sind unsere nächsten Reisen.">Vier Reisen. Jede anders.<span class="ls-tag">Einfache Sprache</span></h2>
+    <p class="sec-lead" data-ls="Aussuchen und mitfahren. Wir planen alles.">Jede Reise dauert fünf bis sieben Tage. Maximal vier Gäste werden von vier ehrenamtlichen Begleitpersonen betreut. Transport, Unterkunft und Tagesgestaltung planen wir.</p>
+
+    <div class="trip-grid">
+
+      <article class="trip-card">
+        <div class="trip-badge">Nächste Reise</div>
+        <div class="trip-meta">25.–31. Mai 2026 · mit AWO Berlin</div>
+        <h3>Oberhof · Thüringer Wald</h3>
+        <p>Kurortentspannung im Thüringer Wald. Barrierefreies Hotel, ruhige Spaziergänge, Kaffeefahrt zum Rennsteig. Kooperation mit AWO Berlin.</p>
+        <div class="trip-facts">
+          <span class="trip-fact">7 Tage</span>
+          <span class="trip-fact">Max. 4 Gäste</span>
+          <span class="trip-fact">Barrierefrei</span>
+        </div>
+        <a href="#anfrage" class="btn btn-dark">Anfragen →</a>
+      </article>
+
+      <article class="trip-card">
+        <div class="trip-badge">In Planung</div>
+        <div class="trip-meta">Juni 2026 · mit AWO Berlin</div>
+        <h3>Ostsee · Boltenhagen</h3>
+        <p>Meeresluft, sanfte Wellen und Strandkörbe. Barrierefreie Strandzugänge, Rollstuhl-Kutsche. Gutes Wetter garantieren wir natürlich nicht.</p>
+        <div class="trip-facts">
+          <span class="trip-fact">6 Tage</span>
+          <span class="trip-fact">Max. 4 Gäste</span>
+          <span class="trip-fact">Barrierefrei</span>
+        </div>
+        <a href="#anfrage" class="btn btn-dark">Anfragen →</a>
+      </article>
+
+      <article class="trip-card">
+        <div class="trip-meta">Juli 2026</div>
+        <h3>Bayerischer Wald</h3>
+        <p>Waldluft, Kräuterwanderungen in barrierefreier Langsamkeit, regionale Küche. Nationalpark-Region, stiller als der Schwarzwald.</p>
+        <div class="trip-facts">
+          <span class="trip-fact">5 Tage</span>
+          <span class="trip-fact">Max. 4 Gäste</span>
+        </div>
+        <a href="#anfrage" class="btn btn-dark">Anfragen →</a>
+      </article>
+
+      <article class="trip-card">
+        <div class="trip-meta">September 2026</div>
+        <h3>Dresden · Städtereise</h3>
+        <p>Zwinger, Frauenkirche, Elbe-Dampfer. Kulturreise im Tempo der Gäste. Zentrales barrierefreies Hotel, Museums-Führungen mit Stopps.</p>
+        <div class="trip-facts">
+          <span class="trip-fact">5 Tage</span>
+          <span class="trip-fact">Max. 4 Gäste</span>
+          <span class="trip-fact">Kultur</span>
+        </div>
+        <a href="#anfrage" class="btn btn-dark">Anfragen →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Prozess -->
+<section class="page">
+  <div class="wrap">
+    <div class="sec-eyebrow">So läuft's ab</div>
+    <h2 class="sec-title" data-ls="So geht es.">In vier Schritten zur Reise<span class="ls-tag">Einfache Sprache</span></h2>
+    <div class="process-steps" style="margin-top: 32px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4 data-ls="Anfragen">Reise anfragen</h4>
+        <p data-ls="Sagen Sie uns, wer mitfahren will und was er braucht.">Kurze Anfrage über das Formular unten oder ein Anruf. Wir melden uns innerhalb von drei Werktagen.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4 data-ls="Beratung">Kostenloses Erstgespräch</h4>
+        <p data-ls="Wir besprechen alles in Ruhe.">Wir besprechen Pflege- und Mobilitätsbedarf, Wünsche und Vorlieben — persönlich oder am Telefon, unverbindlich.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4 data-ls="Planen">Reise bestätigen</h4>
+        <p data-ls="Sie bekommen die Reise-Unterlagen.">Nach Zusage erhalten Sie Reiseunterlagen, Packliste und den Kontakt zur zuständigen Reiseleitung.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4 data-ls="Urlaub machen">Urlaub genießen</h4>
+        <p data-ls="Wir kümmern uns. Sie erholen sich.">Die Reisegruppe trifft sich am Abfahrtsort. Ab da übernehmen die ehrenamtlichen Begleitungen die Betreuung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Anfrage-Formular -->
+<section class="page" style="background: var(--white);" id="anfrage">
+  <div class="wrap">
+    <div class="request-form">
+      <h2 data-ls="Reise anfragen">Reise anfragen — unverbindlich &amp; kostenlos</h2>
+      <p class="intro" data-ls="Schreiben Sie uns. Wir melden uns in drei Tagen.">Wir melden uns innerhalb von drei Werktagen. Keine Reservierung, keine Kosten — einfach erstmal kennenlernen.</p>
+
+      <form onsubmit="event.preventDefault(); submitRequest();">
+        <div class="field">
+          <label for="rq-trip">Für welche Reise interessieren Sie sich?</label>
+          <select id="rq-trip">
+            <option value="">Bitte wählen oder leer lassen</option>
+            <option>Oberhof · Mai 2026</option>
+            <option>Ostsee · Juni 2026</option>
+            <option>Bayerischer Wald · Juli 2026</option>
+            <option>Dresden · September 2026</option>
+            <option>Noch unsicher — einfach beraten lassen</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="rq-name">Ihr Name <span class="req">*</span></label>
+          <input type="text" id="rq-name" required minlength="2">
+        </div>
+        <div class="field">
+          <label for="rq-email">E-Mail <span class="req">*</span></label>
+          <input type="email" id="rq-email" required>
+        </div>
+        <div class="field">
+          <label for="rq-phone">Telefon (für Rückruf)</label>
+          <input type="tel" id="rq-phone">
+        </div>
+        <div class="field">
+          <label for="rq-message">Wer soll mitfahren? Was ist wichtig?</label>
+          <textarea id="rq-message" rows="4" placeholder="z.B.: Mein Vater, 82, Pflegegrad 3, leichte Demenz, Rollator, liebt Kaffeefahrten…"></textarea>
+        </div>
+        <label class="check">
+          <input type="checkbox" id="rq-dsgvo" required>
+          <div class="check-text">Ich stimme zu, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden. Mehr in der <a href="datenschutz.html" target="_blank" style="color:var(--green); font-weight:700;">Datenschutzerklärung</a>.</div>
+        </label>
+        <div class="field-error" id="rq-error" hidden></div>
+        <button type="submit" class="btn btn-primary btn-block btn-xl" style="margin-top: 10px;">Anfrage absenden</button>
+        <p style="text-align: center; font-size: 13px; color: var(--muted); margin-top: 14px;">
+          Oder direkt anrufen: <strong style="color: var(--green-deep);">030 / 000 000 00</strong>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="app.js"></script>
+<script src="layout.js"></script>
+<script>
+LPR_Layout.init({ page: 'reisen' });
+
+function submitRequest() {
+  const name = document.getElementById('rq-name').value.trim();
+  const email = document.getElementById('rq-email').value.trim();
+  const dsgvo = document.getElementById('rq-dsgvo').checked;
+  const err = document.getElementById('rq-error');
+  err.hidden = true;
+  if (!name || !email) { err.textContent = 'Name und E-Mail bitte ausfüllen.'; err.hidden = false; return; }
+  if (!dsgvo) { err.textContent = 'Bitte Datenschutz bestätigen.'; err.hidden = false; return; }
+
+  const reqs = LPR.load('lpr-family-requests-v1', []);
+  reqs.push({
+    trip: document.getElementById('rq-trip').value,
+    name, email,
+    phone: document.getElementById('rq-phone').value.trim(),
+    message: document.getElementById('rq-message').value.trim(),
+    submittedAt: new Date().toISOString()
+  });
+  LPR.save('lpr-family-requests-v1', reqs);
+
+  LPR.showToast('✓ Vielen Dank! Wir melden uns in den nächsten drei Werktagen.');
+  document.getElementById('rq-name').value = '';
+  document.getElementById('rq-email').value = '';
+  document.getElementById('rq-phone').value = '';
+  document.getElementById('rq-message').value = '';
+  document.getElementById('rq-dsgvo').checked = false;
+}
+</script>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-bottom" style="border-top:none; padding-top:0;">
+      <div>© 2026 Leben Pflegen Reisen e.V. · Berlin</div>
+      <div><a href="impressum.html" style="color:var(--lime);">Impressum</a> · <a href="datenschutz.html" style="color:var(--lime);">Datenschutz</a> · <a href="barrierefreiheit.html" style="color:var(--lime);">Barrierefreiheit</a></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
