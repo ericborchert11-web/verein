@@ -274,8 +274,148 @@ main {
 .shift-chip.booked {
   background: #D4E8DC; color: var(--green-deep);
   border-color: var(--ok); font-weight: 700;
-  cursor: default;
+  cursor: pointer;
+  position: relative;
 }
+.shift-chip.booked:hover { filter: brightness(.94); }
+.shift-chip.booked.zone-green {
+  border-left: 4px solid var(--ok);
+}
+.shift-chip.booked.zone-orange {
+  background: #FCEADA; color: #6D3514;
+  border-color: var(--spaet);
+  border-left: 4px solid var(--spaet);
+}
+.shift-chip.booked.zone-red {
+  background: #FDE4DC; color: #8B2818;
+  border-color: #C85B30;
+  border-left: 4px solid #C85B30;
+  animation: pulse-red 2s ease-in-out infinite;
+}
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200, 91, 48, 0); }
+  50% { box-shadow: 0 0 0 3px rgba(200, 91, 48, 0.15); }
+}
+.shift-chip.booked.zone-past {
+  opacity: 0.6; cursor: default;
+  background: #EFEBE4; color: var(--muted);
+  border-color: var(--border);
+}
+.zone-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  margin-right: 3px; vertical-align: middle;
+}
+.zone-dot.green  { background: var(--ok); }
+.zone-dot.orange { background: var(--spaet); }
+.zone-dot.red    { background: #C85B30; }
+.zone-dot.past   { background: var(--muted); }
+
+/* ───── Absage-Dialog ───── */
+#cancel-dialog {
+  max-width: 560px;
+  border-top: 6px solid var(--ok); /* default = grün */
+}
+#cancel-dialog.zone-orange { border-top-color: var(--spaet); }
+#cancel-dialog.zone-red    { border-top-color: #C85B30; }
+
+.cancel-header {
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.cancel-zone-label {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 4px 10px; border-radius: 12px;
+  margin-bottom: 10px;
+}
+#cancel-dialog .cancel-zone-label.zone-green  { background: #D4E8DC; color: var(--green-deep); }
+#cancel-dialog .cancel-zone-label.zone-orange { background: #FCEADA; color: #6D3514; }
+#cancel-dialog .cancel-zone-label.zone-red    { background: #FDE4DC; color: #8B2818; }
+
+.cancel-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 22px; color: var(--green-deep);
+  margin-bottom: 8px;
+}
+.cancel-subtitle {
+  font-size: 14px; color: var(--muted);
+}
+.cancel-body {
+  padding: 22px 28px 8px;
+}
+.cancel-message {
+  background: #F8F5EE; border-radius: var(--radius-sm);
+  padding: 14px 16px; margin-bottom: 20px;
+  font-size: 15px; line-height: 1.55; color: var(--text);
+  border-left: 4px solid var(--border);
+}
+#cancel-dialog.zone-green  .cancel-message { border-left-color: var(--ok); }
+#cancel-dialog.zone-orange .cancel-message { border-left-color: var(--spaet); background: #FEF7EF; }
+#cancel-dialog.zone-red    .cancel-message { border-left-color: #C85B30; background: #FEF0EA; }
+
+.cancel-emergency {
+  background: #FDE4DC; border: 2px solid #C85B30;
+  border-radius: var(--radius-sm);
+  padding: 16px; margin-bottom: 20px;
+}
+.cancel-emergency strong {
+  color: #8B2818; display: block; margin-bottom: 6px; font-size: 15px;
+}
+.cancel-emergency .phone-big {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 24px; font-weight: 800; color: #8B2818;
+  letter-spacing: .02em;
+  display: block; margin-top: 8px;
+}
+
+.cancel-reasons {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 18px;
+}
+.cancel-reason-opt {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer; transition: all .15s;
+  font-size: 14px;
+}
+.cancel-reason-opt:hover { border-color: var(--green); background: #F8F5EE; }
+.cancel-reason-opt input { cursor: pointer; accent-color: var(--green); }
+.cancel-reason-opt.checked { border-color: var(--green); background: #E8F0E8; }
+
+.cancel-footer {
+  padding: 18px 28px 24px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; gap: 12px;
+}
+.btn-keep {
+  background: var(--green); color: #fff; border: none;
+  padding: 12px 22px; border-radius: var(--radius-sm);
+  font-family: inherit; font-weight: 700; font-size: 15px;
+  cursor: pointer;
+}
+.btn-keep:hover { background: var(--green-deep); }
+.btn-cancel-confirm {
+  background: #fff; color: var(--muted); border: 2px solid var(--border);
+  padding: 12px 22px; border-radius: var(--radius-sm);
+  font-family: inherit; font-weight: 600; font-size: 14px;
+  cursor: pointer;
+}
+.btn-cancel-confirm:hover { border-color: #C85B30; color: #8B2818; }
+.btn-cancel-confirm:disabled { opacity: .5; cursor: not-allowed; }
+.btn-cancel-confirm.emergency {
+  background: #C85B30; color: #fff; border-color: #C85B30;
+}
+.btn-cancel-confirm.emergency:hover { background: #8B2818; border-color: #8B2818; }
+.btn-cancel-confirm.emergency:disabled { background: #E8A88C; border-color: #E8A88C; color: #fff; }
+
+.double-check {
+  margin-top: 14px; padding: 12px 14px;
+  background: #FEF0EA; border-radius: var(--radius-sm);
+  font-size: 13px; color: #8B2818;
+}
+.double-check label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
 .shift-chip .clinic {
   font-size: 10px; opacity: .8;
   font-weight: 500;
@@ -613,6 +753,56 @@ footer a { color: var(--lime); text-decoration: none; }
   </div>
 </dialog>
 
+<!-- ═══════════════ ABSAGE-DIALOG (3-stufig) ═══════════════ -->
+<dialog id="cancel-dialog" aria-labelledby="cancel-title">
+  <div class="cancel-header">
+    <span class="cancel-zone-label" id="cancel-zone-label">Zone</span>
+    <div class="cancel-title" id="cancel-title">Dienst absagen?</div>
+    <div class="cancel-subtitle" id="cancel-subtitle">—</div>
+  </div>
+  <div class="cancel-body">
+    <div class="cancel-message" id="cancel-message">—</div>
+
+    <!-- Notfall-Block (nur bei Zone rot sichtbar) -->
+    <div class="cancel-emergency" id="cancel-emergency" hidden>
+      <strong>⚠ Weniger als 24 Stunden bis Dienstbeginn</strong>
+      Bitte informiere zusätzlich <u>sofort telefonisch</u> die Station:
+      <span class="phone-big" id="cancel-phone">030 – 000 00 00</span>
+    </div>
+
+    <!-- Grund-Auswahl (bei Zone orange + rot) -->
+    <div class="cancel-reasons" id="cancel-reasons" hidden>
+      <label class="cancel-reason-opt">
+        <input type="radio" name="cancel-reason" value="krankheit"> Krankheit / Unwohlsein
+      </label>
+      <label class="cancel-reason-opt">
+        <input type="radio" name="cancel-reason" value="familie"> Familiärer Notfall / Angehörige
+      </label>
+      <label class="cancel-reason-opt" id="reason-unfall">
+        <input type="radio" name="cancel-reason" value="unfall"> Unfall / Höhere Gewalt
+      </label>
+      <label class="cancel-reason-opt" id="reason-arbeit">
+        <input type="radio" name="cancel-reason" value="arbeit"> Beruf / Studium kurzfristig
+      </label>
+      <label class="cancel-reason-opt" id="reason-andere">
+        <input type="radio" name="cancel-reason" value="andere"> Andere kurzfristige Verhinderung
+      </label>
+    </div>
+
+    <!-- Doppel-Check bei Zone rot -->
+    <div class="double-check" id="cancel-doublecheck" hidden>
+      <label>
+        <input type="checkbox" id="cancel-confirm-checkbox">
+        Ich bestätige: Ich kann den Dienst wirklich nicht antreten und werde die Klinik zusätzlich telefonisch informieren.
+      </label>
+    </div>
+  </div>
+  <div class="cancel-footer">
+    <button class="btn-keep" onclick="closeCancel()">Dienst behalten</button>
+    <button class="btn-cancel-confirm" id="btn-cancel-confirm" onclick="confirmCancel()">Absagen</button>
+  </div>
+</dialog>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <footer>
@@ -628,16 +818,35 @@ footer a { color: var(--lime); text-decoration: none; }
 // ═══════════════════════════════════════════════════════
 const AVAIL_KEY = 'lpr-sitzwachen-avail-v1';   // Verfügbarkeiten aller Ehrenamtler
 const BOOK_KEY  = 'lpr-sitzwachen-book-v1';    // Buchungen von Kliniken
+const CANCEL_KEY = 'lpr-sitzwachen-cancel-v1'; // Absage-Log (für Kliniken sichtbar)
 const USERS_KEY = 'lpr-sitzwachen-users-v1';   // Registrierte Ehrenamtliche
 const SESSION_KEY = 'lpr-session-v2';
 const MY_EMAIL_KEY = 'lpr-my-email';
 
 const SHIFTS = {
-  frueh: { label: 'Frühdienst', time: '06:00–14:00', cls: 'frueh' },
-  spaet: { label: 'Spätdienst', time: '14:00–22:00', cls: 'spaet' },
-  nacht: { label: 'Nachtdienst', time: '22:00–06:00', cls: 'nacht' }
+  frueh: { label: 'Frühdienst', time: '06:00–14:00', cls: 'frueh', startH: 6 },
+  spaet: { label: 'Spätdienst', time: '14:00–22:00', cls: 'spaet', startH: 14 },
+  nacht: { label: 'Nachtdienst', time: '22:00–06:00', cls: 'nacht', startH: 22 }
 };
 const DAY_MS = 86400000;
+
+// ═══════════════════════════════════════════════════════
+// ABSAGE-ZONEN (3-Stufen-Modell aus Mitwirkungsvereinbarung §3)
+// ═══════════════════════════════════════════════════════
+// Zone 1 (grün):  mehr als 48h vor Dienstbeginn  → einfache Austragung
+// Zone 2 (orange): 24–48h vor Dienstbeginn       → Absage mit Grund
+// Zone 3 (rot):    weniger als 24h vor Dienstbeginn → Notfall-Absage + Klinik anrufen
+function calcZone(key, shift) {
+  const d = keyToDate(key);
+  const startH = SHIFTS[shift].startH;
+  const shiftStart = new Date(d.getFullYear(), d.getMonth(), d.getDate(), startH, 0, 0);
+  const now = new Date();
+  const diffH = (shiftStart - now) / 3600000;
+  if (diffH < 0) return 'past';
+  if (diffH < 24) return 'red';
+  if (diffH < 48) return 'orange';
+  return 'green';
+}
 
 function loadJSON(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch(e) { return d; } }
 function saveJSON(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} }
@@ -757,8 +966,11 @@ function renderCalendar() {
       const booked = myBookingsForDay[shift];
       const availOn = myAvail?.shifts?.includes(shift);
       if (booked) {
-        chips += `<div class="shift-chip booked" title="Gebucht von ${escape(booked.clinic_name)}">
-          <span>${SHIFTS[shift].label.substring(0,5)} ✓</span>
+        const zone = calcZone(key, shift);
+        const zoneClass = `zone-${zone}`;
+        const clickable = zone !== 'past';
+        chips += `<div class="shift-chip booked ${zoneClass}" ${clickable ? `onclick="openCancel(event, '${key}', '${shift}')"` : ''} title="${clickable ? 'Klick zum Absagen' : 'Dienst liegt in der Vergangenheit'}">
+          <span><span class="zone-dot ${zone}"></span>${SHIFTS[shift].label.substring(0,5)} ✓</span>
           <span class="clinic">${escape(booked.clinic_name.substring(0,15))}</span>
         </div>`;
       } else if (availOn) {
@@ -880,6 +1092,163 @@ function removeShift(event, key, shift) {
   saveJSON(AVAIL_KEY, avail);
   render();
   showToast('Schicht entfernt.');
+}
+
+// ═══════════════════════════════════════════════════════
+// ABSAGE-DIALOG (3-stufig: grün / orange / rot)
+// ═══════════════════════════════════════════════════════
+let cancelContext = null; // { key, shift, zone, booking }
+
+function openCancel(event, key, shift) {
+  event.stopPropagation();
+  const bookings = loadJSON(BOOK_KEY, {});
+  const booking = bookings[key]?.[shift];
+  if (!booking) return;
+  const zone = calcZone(key, shift);
+  if (zone === 'past') return;
+
+  cancelContext = { key, shift, zone, booking };
+
+  const dlg = document.getElementById('cancel-dialog');
+  dlg.className = ''; // reset
+  dlg.classList.add(`zone-${zone}`);
+
+  const d = keyToDate(key);
+  const dateStr = d.toLocaleDateString('de-DE', { weekday:'long', day:'numeric', month:'long' });
+  const shiftInfo = SHIFTS[shift];
+
+  // Reset UI
+  document.getElementById('cancel-reasons').hidden = true;
+  document.getElementById('cancel-emergency').hidden = true;
+  document.getElementById('cancel-doublecheck').hidden = true;
+  document.querySelectorAll('input[name="cancel-reason"]').forEach(r => r.checked = false);
+  document.getElementById('cancel-confirm-checkbox').checked = false;
+  const btn = document.getElementById('btn-cancel-confirm');
+  btn.classList.remove('emergency');
+  btn.disabled = false;
+
+  // Sichtbarkeit einzelner Gründe je nach Zone
+  document.getElementById('reason-arbeit').style.display = (zone === 'red') ? 'none' : '';
+  document.getElementById('reason-andere').style.display = (zone === 'red') ? 'none' : '';
+
+  const zoneLbl = document.getElementById('cancel-zone-label');
+  zoneLbl.className = 'cancel-zone-label zone-' + zone;
+
+  if (zone === 'green') {
+    zoneLbl.textContent = 'Entspannt · mehr als 48 h Puffer';
+    document.getElementById('cancel-title').textContent = 'Dienst austragen?';
+    document.getElementById('cancel-subtitle').textContent =
+      `${shiftInfo.label} (${shiftInfo.time}) am ${dateStr} – gebucht von ${booking.clinic_name}`;
+    document.getElementById('cancel-message').innerHTML =
+      `Du möchtest diesen Dienst absagen. Das ist völlig in Ordnung — wir informieren die Klinik und kümmern uns um Ersatz.<br><br>
+       <em>Kein Grund erforderlich. Danke, dass du früh Bescheid gibst.</em>`;
+    btn.textContent = 'Ja, austragen';
+  }
+  else if (zone === 'orange') {
+    zoneLbl.textContent = 'Aufmerksam · 24 – 48 h vor Dienstbeginn';
+    document.getElementById('cancel-title').textContent = 'Dienst absagen – bitte mit Hinweis';
+    document.getElementById('cancel-subtitle').textContent =
+      `${shiftInfo.label} (${shiftInfo.time}) am ${dateStr} – gebucht von ${booking.clinic_name}`;
+    document.getElementById('cancel-message').innerHTML =
+      `Die Klinik hat diesen Dienst fest eingeplant. Bitte gib uns einen kurzen Hinweis, damit wir Ersatz finden können.<br><br>
+       <strong>Danke, dass du ehrlich bist – das hilft uns allen.</strong>`;
+    document.getElementById('cancel-reasons').hidden = false;
+    btn.textContent = 'Absage mit Hinweis senden';
+    btn.disabled = true; // erst nach Grund-Auswahl
+  }
+  else if (zone === 'red') {
+    zoneLbl.textContent = 'Notfall · weniger als 24 h';
+    document.getElementById('cancel-title').textContent = 'Notfall-Absage';
+    document.getElementById('cancel-subtitle').textContent =
+      `${shiftInfo.label} (${shiftInfo.time}) am ${dateStr} – gebucht von ${booking.clinic_name}`;
+    document.getElementById('cancel-message').innerHTML =
+      `Dein Dienst beginnt in weniger als 24 Stunden. Wenn du wirklich nicht kannst, ist das okay – aber die Klinik rechnet mit dir. Wir stehen hinter dir.`;
+    document.getElementById('cancel-emergency').hidden = false;
+    document.getElementById('cancel-phone').textContent = booking.clinic_phone || '030 – 000 00 00';
+    document.getElementById('cancel-reasons').hidden = false;
+    document.getElementById('cancel-doublecheck').hidden = false;
+    btn.textContent = 'Notfall-Absage senden';
+    btn.classList.add('emergency');
+    btn.disabled = true;
+  }
+
+  dlg.showModal();
+}
+
+function closeCancel() {
+  document.getElementById('cancel-dialog').close();
+  cancelContext = null;
+}
+
+// Enable/disable des Absage-Buttons basierend auf Eingaben
+document.addEventListener('change', (e) => {
+  if (!cancelContext) return;
+  const { zone } = cancelContext;
+  const btn = document.getElementById('btn-cancel-confirm');
+  if (zone === 'orange') {
+    const chosen = document.querySelector('input[name="cancel-reason"]:checked');
+    btn.disabled = !chosen;
+  }
+  if (zone === 'red') {
+    const chosen = document.querySelector('input[name="cancel-reason"]:checked');
+    const confirmed = document.getElementById('cancel-confirm-checkbox').checked;
+    btn.disabled = !(chosen && confirmed);
+  }
+  // Optische Hervorhebung der Auswahl
+  document.querySelectorAll('.cancel-reason-opt').forEach(opt => {
+    const input = opt.querySelector('input');
+    opt.classList.toggle('checked', input?.checked);
+  });
+});
+
+function confirmCancel() {
+  if (!cancelContext) return;
+  const { key, shift, zone, booking } = cancelContext;
+
+  const reasonInput = document.querySelector('input[name="cancel-reason"]:checked');
+  const reason = reasonInput ? reasonInput.value : null;
+
+  // 1. Buchung entfernen
+  const bookings = loadJSON(BOOK_KEY, {});
+  if (bookings[key]?.[shift]) {
+    delete bookings[key][shift];
+    if (Object.keys(bookings[key]).length === 0) delete bookings[key];
+    saveJSON(BOOK_KEY, bookings);
+  }
+
+  // 2. Absage-Log schreiben (für Klinik sichtbar)
+  const session = getSession();
+  const cancels = loadJSON(CANCEL_KEY, []);
+  cancels.push({
+    id: Date.now(),
+    timestamp: new Date().toISOString(),
+    date_key: key,
+    shift,
+    zone,
+    reason,
+    ehrenamt_email: session.email,
+    ehrenamt_name: session.name,
+    clinic_email: booking.clinic_email,
+    clinic_name: booking.clinic_name,
+    clinic_ward: booking.clinic_ward || '',
+    patient_ref: booking.patient_ref || '',
+    seen_by_clinic: false
+  });
+  saveJSON(CANCEL_KEY, cancels);
+
+  // 3. Verfügbarkeit bleibt eingetragen → andere Ehrenamtliche oder Klinik-Portal zeigt Slot wieder frei
+  // (keine Änderung nötig, da avail separat gespeichert ist und der Dienst nur in BOOK_KEY entfernt wurde)
+
+  // 4. Bestätigung
+  closeCancel();
+
+  const msgs = {
+    green:  'Danke für deine frühe Rückmeldung. Wir informieren die Klinik und suchen Ersatz.',
+    orange: 'Absage gesendet. Die Klinik wurde benachrichtigt. Ruh dich aus – wir freuen uns auf deinen nächsten Dienst!',
+    red:    'Absage gesendet. Bitte rufe JETZT die Klinik direkt an: ' + (booking.clinic_phone || 'siehe Buchung')
+  };
+  showToast(msgs[zone], zone === 'red' ? 'warn' : 'ok');
+  render();
 }
 
 // ═══════════════════════════════════════════════════════

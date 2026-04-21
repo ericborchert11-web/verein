@@ -450,6 +450,70 @@ footer a { color: var(--lime); text-decoration: none; }
   body { background: #fff; }
   @page { size: A4; margin: 20mm; }
 }
+
+/* ═══════════ ABSAGE-BANNER ═══════════ */
+.cancel-banner {
+  background: #FDE4DC; border: 2px solid #C85B30;
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.cancel-banner.zone-orange { background: #FCEADA; border-color: var(--spaet); }
+.cancel-banner.zone-green  { background: #E8F0E8; border-color: var(--ok); }
+.cancel-banner-icon {
+  font-size: 28px; line-height: 1;
+  flex-shrink: 0; padding-top: 2px;
+}
+.cancel-banner-body { flex: 1; }
+.cancel-banner-head {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 16px; font-weight: 800; color: #8B2818;
+  margin-bottom: 4px;
+}
+.cancel-banner.zone-orange .cancel-banner-head { color: #6D3514; }
+.cancel-banner.zone-green  .cancel-banner-head { color: var(--green-deep); }
+.cancel-banner-sub {
+  font-size: 14px; color: var(--text); line-height: 1.5;
+}
+.cancel-banner-sub strong { color: #8B2818; }
+.cancel-banner-actions {
+  display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;
+}
+.cancel-banner-btn {
+  background: #fff; border: 1.5px solid #C85B30; color: #8B2818;
+  padding: 8px 16px; border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 13px; font-weight: 700;
+  cursor: pointer;
+}
+.cancel-banner-btn:hover { background: #FDE4DC; }
+.cancel-banner-btn.primary {
+  background: #C85B30; color: #fff;
+}
+.cancel-banner-btn.primary:hover { background: #8B2818; }
+.cancel-banner-dismiss {
+  background: transparent; border: none; color: var(--muted);
+  font-size: 20px; line-height: 1; cursor: pointer;
+  padding: 0 8px; align-self: flex-start;
+}
+.cancel-banner-dismiss:hover { color: var(--text); }
+.cancel-history {
+  margin-top: 24px; padding: 16px 20px;
+  background: #F8F5EE; border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.cancel-history-head {
+  font-size: 12px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 12px;
+}
+.cancel-history-entry {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 8px 0; border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.cancel-history-entry:first-of-type { border-top: none; }
+.cancel-history-when { color: var(--muted); font-size: 12px; }
 </style>
 </head>
 <body>
@@ -520,6 +584,9 @@ footer a { color: var(--lime); text-decoration: none; }
       </div>
       <button class="btn btn-ghost" onclick="doLogout()">Abmelden</button>
     </div>
+
+    <!-- Absage-Banner (dynamisch gefüllt) -->
+    <div id="cancel-banners"></div>
 
     <!-- Bereits gebuchte -->
     <div id="mine-wrap" hidden>
@@ -651,6 +718,7 @@ footer a { color: var(--lime); text-decoration: none; }
 // ═══════════════════════════════════════════════════════
 const AVAIL_KEY = 'lpr-sitzwachen-avail-v1';
 const BOOK_KEY  = 'lpr-sitzwachen-book-v1';
+const CANCEL_KEY = 'lpr-sitzwachen-cancel-v1';
 const CLINIC_KEY = 'lpr-sitzwachen-clinics-v1';
 const SESSION_KEY = 'lpr-session-v2';
 
@@ -731,8 +799,128 @@ function render() {
   document.getElementById('clinic-name').textContent = session.name + (session.ward ? ` · ${session.ward}` : '');
   document.getElementById('clinic-meta').textContent = `${session.contact} · ${session.phone} · ${session.email}`;
 
+  renderCancelBanners();
   renderMine();
   renderAvailable();
+}
+
+function renderCancelBanners() {
+  const session = getSession();
+  const cancels = loadJSON(CANCEL_KEY, []);
+  const wrap = document.getElementById('cancel-banners');
+  if (!wrap) return;
+
+  // Nur Absagen für diese Klinik, die noch nicht bestätigt wurden
+  const mine = cancels.filter(c => c.clinic_email === session.email && !c.seen_by_clinic);
+  if (mine.length === 0) {
+    wrap.innerHTML = '';
+    renderCancelHistory();
+    return;
+  }
+
+  // Nach Dringlichkeit sortieren: rot > orange > grün
+  const weight = { red: 0, orange: 1, green: 2 };
+  mine.sort((a, b) => weight[a.zone] - weight[b.zone]);
+
+  const reasonLbl = {
+    krankheit: 'Krankheit',
+    familie: 'Familiärer Notfall',
+    unfall: 'Unfall / Höhere Gewalt',
+    arbeit: 'Beruf / Studium',
+    andere: 'Andere Verhinderung'
+  };
+
+  wrap.innerHTML = mine.map(c => {
+    const d = keyToDate(c.date_key);
+    const dateStr = d.toLocaleDateString('de-DE', { weekday:'long', day:'numeric', month:'long' });
+    const shiftInfo = SHIFTS[c.shift];
+    const when = new Date(c.timestamp).toLocaleString('de-DE', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+
+    const icons = { red: '🚨', orange: '⚠️', green: 'ℹ️' };
+    const heads = {
+      red: 'NOTFALL-ABSAGE – weniger als 24 h vor Dienstbeginn',
+      orange: 'Kurzfristige Absage – bitte Alternative prüfen',
+      green: 'Frühzeitige Absage – Verein sucht Ersatz'
+    };
+    const texts = {
+      red: `<strong>${escape(c.ehrenamt_name)}</strong> kann den Dienst nicht antreten. Bitte organisieren Sie <strong>sofort</strong> eine Alternative (eigenes Personal, Betreuung durch Angehörige).`,
+      orange: `<strong>${escape(c.ehrenamt_name)}</strong> hat abgesagt. Der Verein sucht Ersatz, kann diesen aber nicht garantieren. Bitte prüfen Sie bereits jetzt interne Alternativen.`,
+      green: `<strong>${escape(c.ehrenamt_name)}</strong> hat rechtzeitig abgesagt. Der Verein sucht Ersatz. Wir informieren Sie, sobald eine neue Person zusagt.`
+    };
+    const grundText = c.reason ? ` · Grund: ${reasonLbl[c.reason] || c.reason}` : '';
+
+    return `<div class="cancel-banner zone-${c.zone}">
+      <div class="cancel-banner-icon">${icons[c.zone]}</div>
+      <div class="cancel-banner-body">
+        <div class="cancel-banner-head">${heads[c.zone]}</div>
+        <div class="cancel-banner-sub">
+          ${texts[c.zone]}<br>
+          <small>${shiftInfo.label} (${shiftInfo.time}) am ${dateStr}${grundText} · Eingegangen ${when}</small>
+        </div>
+        <div class="cancel-banner-actions">
+          <button class="cancel-banner-btn primary" onclick="acknowledgeCancel(${c.id})">Zur Kenntnis genommen</button>
+          <button class="cancel-banner-btn" onclick="rebookSlot('${c.date_key}','${c.shift}')">Neuen Ehrenamtlichen buchen</button>
+        </div>
+      </div>
+      <button class="cancel-banner-dismiss" onclick="acknowledgeCancel(${c.id})" title="Ausblenden">×</button>
+    </div>`;
+  }).join('');
+
+  renderCancelHistory();
+}
+
+function renderCancelHistory() {
+  const session = getSession();
+  const cancels = loadJSON(CANCEL_KEY, []);
+  const wrap = document.getElementById('cancel-banners');
+  if (!wrap) return;
+
+  const history = cancels
+    .filter(c => c.clinic_email === session.email && c.seen_by_clinic)
+    .slice(-5)
+    .reverse();
+
+  if (history.length === 0) return;
+
+  const reasonLbl = {
+    krankheit: 'Krankheit', familie: 'Familiärer Notfall',
+    unfall: 'Unfall', arbeit: 'Beruf/Studium', andere: 'Andere'
+  };
+
+  const html = `<div class="cancel-history">
+    <div class="cancel-history-head">Frühere Absagen (letzte 5)</div>
+    ${history.map(c => {
+      const d = keyToDate(c.date_key);
+      const dateStr = d.toLocaleDateString('de-DE', { day:'2-digit', month:'short' });
+      const when = new Date(c.timestamp).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit' });
+      return `<div class="cancel-history-entry">
+        <span>${escape(c.ehrenamt_name)} · ${SHIFTS[c.shift].label} am ${dateStr}${c.reason ? ` · ${reasonLbl[c.reason] || c.reason}` : ''}</span>
+        <span class="cancel-history-when">${when}</span>
+      </div>`;
+    }).join('')}
+  </div>`;
+
+  wrap.insertAdjacentHTML('beforeend', html);
+}
+
+function acknowledgeCancel(cancelId) {
+  const cancels = loadJSON(CANCEL_KEY, []);
+  const c = cancels.find(x => x.id === cancelId);
+  if (c) { c.seen_by_clinic = true; saveJSON(CANCEL_KEY, cancels); render(); }
+}
+
+function rebookSlot(dateKey, shift) {
+  // Springt zum Slot-Bereich und blendet Absage-Notiz aus
+  const cancels = loadJSON(CANCEL_KEY, []);
+  cancels.filter(c => c.date_key === dateKey && c.shift === shift).forEach(c => c.seen_by_clinic = true);
+  saveJSON(CANCEL_KEY, cancels);
+  document.getElementById('f-from').value = dateKey;
+  const d = keyToDate(dateKey);
+  const in7 = new Date(d); in7.setDate(in7.getDate() + 7);
+  document.getElementById('f-to').value = `${in7.getFullYear()}-${String(in7.getMonth()+1).padStart(2,'0')}-${String(in7.getDate()).padStart(2,'0')}`;
+  render();
+  document.querySelector('.filters')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  showToast('Offene Slots für den Zeitraum werden angezeigt.');
 }
 
 function renderMine() {
@@ -1080,7 +1268,7 @@ document.addEventListener('keydown', e => {
 
 // Live-Update bei Storage-Änderungen in anderen Tabs
 window.addEventListener('storage', e => {
-  if (e.key === AVAIL_KEY || e.key === BOOK_KEY) render();
+  if (e.key === AVAIL_KEY || e.key === BOOK_KEY || e.key === CANCEL_KEY) render();
 });
 
 initDefaultDates();
