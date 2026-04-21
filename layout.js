@@ -150,7 +150,18 @@
       renderA11y();
       if (opts.header !== false) renderHeader(opts.page || '');
       if (opts.footer !== false) renderFooter();
+      if (opts.chatbot !== false) loadChatbot();
     },
     escapeHtml
   };
+
+  function loadChatbot() {
+    // Chatbot nur einmal laden
+    if (document.getElementById('lpr-chatbot-script')) return;
+    const s = document.createElement('script');
+    s.id = 'lpr-chatbot-script';
+    s.src = 'chatbot.js';
+    s.defer = true;
+    document.body.appendChild(s);
+  }
 })();
