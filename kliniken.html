@@ -451,6 +451,29 @@ footer a { color: var(--lime); text-decoration: none; }
   @page { size: A4; margin: 20mm; }
 }
 
+/* ═══════════ MATCH-BADGES & DIMMED CARDS ═══════════ */
+.match-badge {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700;
+  padding: 2px 8px; border-radius: 8px;
+  margin-left: 4px; vertical-align: middle;
+  letter-spacing: .02em;
+}
+.match-badge.pos   { background: #D4E8DC; color: var(--green-deep); }
+.match-badge.soft  { background: #FFF4E4; color: #8B6218; border: 1px solid #E8C988; }
+.match-badge.hard  { background: #FDE4DC; color: #8B2818; }
+
+.shift-card-dimmed {
+  opacity: 0.55;
+  background: #FAF8F2 !important;
+  border-left-color: #D0C8B8 !important;
+}
+.shift-card-dimmed:hover { opacity: 0.85; }
+.shift-card-dimmed .btn-primary {
+  background: #fff; color: #8B2818; border: 1.5px solid #C85B30;
+}
+.shift-card-dimmed .btn-primary:hover { background: #FDE4DC; }
+
 /* ═══════════ ABSAGE-BANNER ═══════════ */
 .cancel-banner {
   background: #FDE4DC; border: 2px solid #C85B30;
@@ -719,6 +742,7 @@ footer a { color: var(--lime); text-decoration: none; }
 const AVAIL_KEY = 'lpr-sitzwachen-avail-v1';
 const BOOK_KEY  = 'lpr-sitzwachen-book-v1';
 const CANCEL_KEY = 'lpr-sitzwachen-cancel-v1';
+const PROFILE_KEY = 'lpr-profiles-v1';
 const CLINIC_KEY = 'lpr-sitzwachen-clinics-v1';
 const SESSION_KEY = 'lpr-session-v2';
 
@@ -960,37 +984,68 @@ function renderAvailable() {
   const to = document.getElementById('f-to').value;
   if (!from || !to) return;
 
+  const session = getSession();
   const avail = loadJSON(AVAIL_KEY, {});
   const bookings = loadJSON(BOOK_KEY, {});
+  const profiles = loadJSON(PROFILE_KEY, {});
   const today = new Date(); today.setHours(0,0,0,0);
   const fromDate = keyToDate(from);
   const toDate = keyToDate(to);
 
-  // Alle verfügbaren Schichten zusammentragen
+  // Aktuelle Klinik für Matching identifizieren
+  // (vereinfacht: Klinik-E-Mail-Prefix als clinic-id – z.B. charite@demo.de → "charite")
+  // Später: richtige Klinik-ID im Session-Objekt halten
+  const clinicId = guessClinicIdFromSession(session);
+
+  // Alle verfügbaren Schichten zusammentragen, mit Match-Score
   const allAvail = [];
   for (const email in avail) {
     const userAvail = avail[email];
+    const profile = profiles[email] || null;
     for (const date in userAvail) {
       const d = keyToDate(date);
       if (d < today || d < fromDate || d > toDate) continue;
       const entry = userAvail[date];
       for (const shift of entry.shifts || []) {
         if (!shiftFilter.has(shift)) continue;
-        // Schon gebucht?
         if (bookings[date]?.[shift]) continue;
+
+        // Matching berechnen (nur wenn Profil existiert)
+        const match = matchProfileForShift(profile, {
+          shift, clinicId, activityType: 'sitzwachen'
+        });
+
+        // HART ausgeschlossen: Person sieht Klinik-Angebot sowieso nicht auf ihrer Seite,
+        // aber aus Klinik-Sicht müssen wir sie im „Nicht-Match"-Bereich zeigen,
+        // damit die Klinik versteht, dass diese Person in der Datenbank existiert,
+        // aber nicht passt. Wir filtern hier NICHT raus, sondern sortieren:
         allAvail.push({
           date, shift,
           ehrenamt_email: email,
           ehrenamt_name: entry.name,
-          note: entry.note || ''
+          note: entry.note || '',
+          matchScore: match.score,
+          matchFlags: match.flags,
+          matchHard: match.hardFail
         });
       }
     }
   }
-  // Sortieren: Datum, dann Schicht
-  allAvail.sort((a,b) => a.date.localeCompare(b.date) || (['frueh','spaet','nacht'].indexOf(a.shift) - ['frueh','spaet','nacht'].indexOf(b.shift)));
 
-  document.getElementById('avail-count').textContent = `${allAvail.length} Schicht${allAvail.length!==1?'en':''} gefunden`;
+  // Sortieren: erst passende (höchster Score), dann unpassende; innerhalb: Datum/Schicht
+  allAvail.sort((a,b) => {
+    if (a.matchHard !== b.matchHard) return a.matchHard ? 1 : -1;
+    if (b.matchScore !== a.matchScore) return b.matchScore - a.matchScore;
+    return a.date.localeCompare(b.date) || (['frueh','spaet','nacht'].indexOf(a.shift) - ['frueh','spaet','nacht'].indexOf(b.shift));
+  });
+
+  const matchingCount = allAvail.filter(a => !a.matchHard).length;
+  const totalCount = allAvail.length;
+
+  document.getElementById('avail-count').textContent =
+    matchingCount === totalCount
+      ? `${totalCount} Schicht${totalCount!==1?'en':''} gefunden`
+      : `${matchingCount} passende · ${totalCount - matchingCount} nicht passend von ${totalCount}`;
 
   const list = document.getElementById('shift-list');
   if (allAvail.length === 0) {
@@ -1005,14 +1060,17 @@ function renderAvailable() {
   list.innerHTML = allAvail.map(a => {
     const d = keyToDate(a.date);
     const shift = SHIFTS[a.shift];
-    return `<div class="shift-card ${a.shift}">
+    const dimmedClass = a.matchHard ? 'shift-card-dimmed' : '';
+    const matchBadges = renderMatchBadges(a.matchFlags, a.matchHard);
+
+    return `<div class="shift-card ${a.shift} ${dimmedClass}">
       <div class="shift-date">
         <div class="weekday">${d.toLocaleDateString('de-DE', { weekday:'short' })}</div>
         <div class="day">${d.getDate()}</div>
         <div class="month">${d.toLocaleDateString('de-DE', { month:'short', year:'2-digit' })}</div>
       </div>
       <div class="shift-main">
-        <div class="shift-title">${escape(a.ehrenamt_name)}</div>
+        <div class="shift-title">${escape(a.ehrenamt_name)} ${matchBadges}</div>
         <div class="shift-meta">
           <span class="shift-time-badge ${a.shift}">${shift.label}</span>
           <span>🕐 ${shift.time}</span>
@@ -1023,11 +1081,79 @@ function renderAvailable() {
       <div class="shift-actions">
         <div class="shift-price"><strong>200 €</strong> Spendenempfehlung</div>
         <button class="btn btn-primary" onclick="openBook('${a.date}','${a.shift}','${a.ehrenamt_email}')">
-          Verbindlich buchen →
+          ${a.matchHard ? 'Trotzdem anfragen' : 'Verbindlich buchen →'}
         </button>
       </div>
     </div>`;
   }).join('');
+}
+
+// ─── Präferenz-Matching ───────────────────────────────────
+function guessClinicIdFromSession(session) {
+  if (!session?.email) return null;
+  const prefix = session.email.split('@')[0];
+  const map = {
+    'charite': 'charite-mitte',
+    'hedwig': 'hedwig',
+    'vivantes': 'vivantes-friedrichshain'
+  };
+  return map[prefix] || null;
+}
+
+function matchProfileForShift(profile, ctx) {
+  // Kein Profil = neutral (passt immer, score 0)
+  if (!profile) return { score: 0, flags: [], hardFail: false };
+
+  const flags = [];
+  let score = 0;
+  let hardFail = false;
+
+  // HART: Tätigkeitsart zugelassen?
+  const types = profile.activityTypes || [];
+  if (types.length > 0 && !types.includes(ctx.activityType)) {
+    flags.push({ type: 'hard', label: 'Macht keine ' + ctx.activityType });
+    hardFail = true;
+  }
+
+  // HART: Qualifikation? (für Sitzwachen z.B. sitzwache-schulung)
+  const quals = profile.qualifications || [];
+  if (ctx.activityType === 'sitzwachen' && quals.length > 0 && !quals.includes('sitzwache-schulung')) {
+    flags.push({ type: 'hard', label: 'Keine Sitzwachen-Schulung' });
+    hardFail = true;
+  }
+
+  // WEICH: Schicht-Präferenz
+  const shifts = profile.preferredShifts || ['frueh','spaet','nacht'];
+  if (!shifts.includes(ctx.shift)) {
+    flags.push({ type: 'soft', label: ctx.shift === 'nacht' ? 'Bevorzugt keine Nacht' : 'Andere Schicht bevorzugt' });
+    score -= 1;
+  } else {
+    score += 1;
+  }
+
+  // WEICH: Klinik-Präferenz
+  if (ctx.clinicId && profile.clinicPrefs) {
+    const p = profile.clinicPrefs[ctx.clinicId];
+    if (p === 'pref') {
+      flags.push({ type: 'pos', label: '💚 bevorzugte Klinik' });
+      score += 2;
+    } else if (p === 'avoid') {
+      flags.push({ type: 'soft', label: 'Klinik wird nicht bevorzugt' });
+      score -= 2;
+    }
+  }
+
+  return { score, flags, hardFail };
+}
+
+function renderMatchBadges(flags, hardFail) {
+  if (!flags || flags.length === 0) return '';
+  return flags.map(f => {
+    const cls = f.type === 'pos' ? 'match-badge pos'
+              : f.type === 'hard' ? 'match-badge hard'
+              : 'match-badge soft';
+    return `<span class="${cls}">${escape(f.label)}</span>`;
+  }).join(' ');
 }
 
 // ═══════════════════════════════════════════════════════
